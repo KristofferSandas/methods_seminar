@@ -1,0 +1,64 @@
+*** PRELIMINARY SEMINAR PROJECT PLAN ***
+
+- 1 -
+
+Create github repo with readme and add the other as collaborator.
+
+
+
+- 2 - 
+
+One person clones repo locally and creates an R project. Stage and push to github.
+
+
+- 3 -
+
+Both clone repo locally to do work.
+	- work in separate branches
+	- create pull requests (and take screenshots? document in some way)
+
+
+- 4 -
+
+R script 1: import data,  filter low-expressed, organize with sample table, normalize
+
+input: count file + sample table
+output: organized and normalized dataframe/.csv file
+
+packages: edgeR
+
+
+- 5 -
+
+R script 2: statistical analysis, find differentially expressed genes
+	- filtered by FDR and log2 fold change
+
+input: dataframe from - 4- 
+output: list of DEGs (-> for presentation)
+
+packages:	edgeR
+		openxlsx - produce exel files
+
+
+- 6 -
+
+R script 3: over representation analysis with enrichGO and enrichKEGG
+
+input: list of DEGs
+output: enrichment plots
+
+packages:	clusterProfiler - ORA
+		enrichplot - visualization
+		org.Hs.eg.db - ID mapping
+
+
+- Ongoing things - 
+
+update readme
+add CONTRIBUTORS file
+keep a NEWS/CHANGES file?
+user manual (markdown -> HTML)
+
+use issues, branches, pull requests and document this in some way for the presentation
+		 
+
