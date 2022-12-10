@@ -2,14 +2,28 @@
 % Please edit documentation in R/calculateDEGsFunction.r
 \name{calculateDEGs}
 \alias{calculateDEGs}
-\title{This script imports & filters the data and exports it to a .csv file
-Should we add a prompt for the user to specify the files used?
-This documentation needs updating later}
+\title{calculateDEGs}
 \usage{
 calculateDEGs(input_file, output_file, sample_groups)
 }
+\arguments{
+\item{input_file}{This is the path to the expression counts file.}
+
+\item{output_file}{This is the path to the .xlsx file that will be created, containing a list of DEGs.}
+
+\item{sample_groups}{This is a vector of ones and zeros, for examlpe c(1,0,0,0,1). This vector specifies which samlpes(columns) are control/healthy(0) and which are disease(1).}
+}
 \description{
-This script imports & filters the data and exports it to a .csv file
-Should we add a prompt for the user to specify the files used?
-This documentation needs updating later
+Filters and normalizes RNA-seq expression data, calculates statistically significant DEGs and exports them to an excel file. The DEGs are filtered by FDR < 0.05 and by absolute logFC value > 1.3. The low expression filtering parameters are: genes with at least 10 counts in at least 3 samples are kept.
+}
+\examples{
+library(DEGpathwayAnalysis)
+
+calculateDEGs("input_data/E-MTAB-2523.counts.txt",
+              "processed_data/DEGs_from_E-MTAB-2523.xlsx",
+              c(1,0,1,1,0,1,0,1,0,1,1,1,0,1,1,1,0,1))
+
+
+
+
 }

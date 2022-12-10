@@ -1,20 +1,22 @@
-# This script imports & filters the data and exports it to a .csv file
-# Should we add a prompt for the user to specify the files used?
+#' This script imports & filters the data and exports it to a .csv file
+#' Should we add a prompt for the user to specify the files used?
+
+calculate_DEGs<- function(input_file, sample_table, output_file) {
 
 library(edgeR)
 library(openxlsx)
 
 # importing counts
-gene_counts<- read.table("input_data/E-MTAB-2523.counts.txt", 
-                         header=T, as.is=T, row.names = 1, sep="\t")
+gene_counts<- read.table(input_file, header=T, as.is=T, 
+                         row.names = 1, sep="\t")
 
 # inspecting data
 #dim(gene_counts)
 #head(gene_counts, 5)
 
 # importing sample data
-sample_table<- read.table("input_data/E-MTAB-2523_sample table.txt", 
-                          header = TRUE, as.is = TRUE, sep="\t")
+sample_table<- read.table(sample_table, header = TRUE, 
+                          as.is = TRUE, sep="\t")
 
 # checking that the counts and sample table are in the same order
 #colnames(gene_counts)
@@ -78,8 +80,8 @@ DEG_by_FDR_logFC<- DEG_by_FDR[DEG_by_FDR$table$logFC<-1.3&DEG_by_FDR$table$logFC
 
 # export to excel file
 write.xlsx(DEG_by_FDR_logFC$table, 
-           "processed_data/DEGs_from_E-MTAB-2523.xlsx",
+           output_file,
            rowNames = TRUE)
-
+}
 
   

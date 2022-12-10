@@ -1,7 +1,7 @@
 # this is how you run the function and import the package
 
-library(DEGpathwayAnalysis)
-#calcSum(c(1,2,3))
+#library(DEGpathwayAnalysis)
+
 
 calculateDEGs("input_data/E-MTAB-2523.counts.txt",
                "processed_data/DEGs_from_E-MTAB-2523.xlsx",
