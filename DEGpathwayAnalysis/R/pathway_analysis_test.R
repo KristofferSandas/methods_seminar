@@ -8,15 +8,15 @@ organism = "org.Hs.eg.db"
 library(organism, character.only = TRUE)
 
 # reading in input from deseq2
-df = read.xlsx("DEGs_from_E-MTAB-2523.xlsx", rowNames =TRUE)
+df = read.xlsx("processed_data/DEGs_from_E-MTAB-2523.xlsx", rowNames =TRUE)
 
-# we want the log2 fold change 
+# we want the log2 fold change
 original_gene_list <- df$logFC
 
 # name the vector
 names(original_gene_list) <- df$X
 
-# omit any NA values 
+# omit any NA values
 gene_list<-na.omit(original_gene_list)
 
 # sort the list in decreasing order (required for clusterProfiler)
