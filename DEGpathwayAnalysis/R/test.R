@@ -1,6 +1,6 @@
 # this is how you run the function and import the package
 
-#library(DEGpathwayAnalysis)
+library(DEGpathwayAnalysis)
 
 
 calculateDEGs("input_data/E-MTAB-2523.counts.txt",
