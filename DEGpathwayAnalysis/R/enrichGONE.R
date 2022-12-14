@@ -23,7 +23,7 @@
 #'
 #'
 
-enrichGONE<- function(input_file_1, intput_file_2, output_file) {
+enrichGONE<- function(input_file_1,input_file_2,output_file) {
   
 
 library(clusterProfiler)
@@ -87,7 +87,8 @@ write.xlsx(go_enrich7, output_file)
 }
 
 #Test our function from the DEGpathwayAnalysis folder
-enrichGONE("processed_data/DEGs_from_E-MTAB-2523.xlsx","processed_data/universe2.xlsx","processed_data/enrichGONE_results.xlsx")
+enrichGONE("DEGs_from_E-MTAB-2523.xlsx","universe2.xlsx","enrichGONE_results.xlsx")
+
 
 
 
