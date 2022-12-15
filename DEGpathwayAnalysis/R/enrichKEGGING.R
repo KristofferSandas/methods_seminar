@@ -30,6 +30,9 @@ enrichKEGGING<- function(input_file_1,input_file_2,output_file) {
   library(edgeR)
   library(openxlsx)
   library(org.Hs.eg.db)
+  library(enrichplot)
+  library(ggnewscale)
+  library(ggupset)
   
   #Importing file for gene attribute
   
@@ -78,7 +81,22 @@ enrichKEGGING<- function(input_file_1,input_file_2,output_file) {
   
   universe_list_entrez<- bitr(names(universe_gene_list), fromType = "SYMBOL", toType = "ENTREZID", OrgDb = "org.Hs.eg.db", drop=T)
   
-  go_keggo <- enrichKEGG(gene = gene_list_entrez$ENTREZID,universe = universe_list_entrez$ENTREZID, organism  = "hsa" , keyType = 'ncbi-geneid',pvalueCutoff = 0.05, qvalueCutoff = 0.1)
+  go_keggo <- enrichKEGG(gene = gene_list_entrez$ENTREZID,universe = universe_list_entrez$ENTREZID, organism  = "hsa", keyType = 'ncbi-geneid',pvalueCutoff = 0.05, qvalueCutoff = 0.1)
+  
+
+  
+  # displays a bar plot of the data in the "go_keggo" dataset
+  show(barplot(go_keggo))
+  
+  # displays a dot plot of the data in the "go_keggo" dataset
+  show(dotplot(go_keggo))
+  
+  # displays an upset plot of the data in the "go_keggo" dataset
+  show(upsetplot(go_keggo))
+  
+  # displays a heat map plot of the data in the "go_keggo" dataset, with fold change values determined by the "gene_list" dataset
+  show(heatplot(go_keggo, foldChange = gene_list))
+  
   
   # Use the write.xlsx function to export the enrichKEGG results to an Excel file
   write.xlsx(go_keggo, output_file)
