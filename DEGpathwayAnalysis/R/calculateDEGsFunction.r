@@ -5,7 +5,9 @@
 #'
 #' @param input_file This is the path to the expression counts file.
 #'
-#' @param output_file This is the path to the .xlsx file that will be created, containing a list of DEGs.
+#' @param output_file This is the path to the .xlsx file that will be created, containing a list of most significant DEGs.
+#'
+#' @param output_file_2 This is the path to the .xlsx file used as universe in the other functions in the program, containing a list of all DEGs unfiltered.
 #'
 #' @param sample_groups This is a vector of ones and zeros, for examlpe c(1,0,0,0,1). This vector specifies which samlpes(columns) are control/healthy(0) and which are disease(1).
 #'
@@ -21,7 +23,7 @@
 #'
 
 
-calculateDEGs<- function(input_file, output_file, sample_groups) {
+calculateDEGs<- function(input_file, output_file, output_file_2, sample_groups) {
 
   library(edgeR)
   library(openxlsx)
@@ -105,5 +107,14 @@ calculateDEGs<- function(input_file, output_file, sample_groups) {
   write.xlsx(DEG_by_FDR_logFC$table,
              output_file,
              rowNames = TRUE)
+
+  write.xlsx(DEG_tops$table,
+             output_file_2,
+             rowNames = TRUE)
 }
 
+# test function
+calculateDEGs("input_data/E-MTAB-2523.counts.txt",
+              "processed_data/DEGs_from_E-MTAB-2523.xlsx",
+              "processed_data/universe.xlsx",
+              c(1,0,1,1,0,1,0,1,0,1,1,1,0,1,1,1,0,1))

@@ -4,12 +4,14 @@
 \alias{calculateDEGs}
 \title{calculateDEGs}
 \usage{
-calculateDEGs(input_file, output_file, sample_groups)
+calculateDEGs(input_file, output_file, output_file_2, sample_groups)
 }
 \arguments{
 \item{input_file}{This is the path to the expression counts file.}
 
-\item{output_file}{This is the path to the .xlsx file that will be created, containing a list of DEGs.}
+\item{output_file}{This is the path to the .xlsx file that will be created, containing a list of most significant DEGs.}
+
+\item{output_file_2}{This is the path to the .xlsx file used as universe in the other functions in the program, containing a list of all DEGs unfiltered.}
 
 \item{sample_groups}{This is a vector of ones and zeros, for examlpe c(1,0,0,0,1). This vector specifies which samlpes(columns) are control/healthy(0) and which are disease(1).}
 }
