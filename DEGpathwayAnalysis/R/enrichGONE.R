@@ -26,10 +26,13 @@
 enrichGONE<- function(input_file_1,input_file_2,output_file) {
   
 
-library(clusterProfiler)
-library(edgeR)
-library(openxlsx)
-library(org.Hs.eg.db)
+  library(clusterProfiler)
+  library(edgeR)
+  library(openxlsx)
+  library(org.Hs.eg.db)
+  library(enrichplot)
+  library(ggnewscale)
+  library(ggupset)
 
 #Importing file for gene attribute
   
@@ -81,6 +84,22 @@ universe_list_entrez<- bitr(names(universe_gene_list), fromType = "SYMBOL", toTy
 
 go_enrich7 <- enrichGO(gene = gene_list_entrez$ENTREZID,universe = universe_list_entrez$ENTREZID, OrgDb = "org.Hs.eg.db" , keyType = 'ENTREZID',ont = "BP",pvalueCutoff = 0.05, qvalueCutoff = 0.1)
 
+
+
+# displays a bar plot of the data in the "go_enrich7" dataset
+show(barplot(go_enrich7))
+
+# displays a dot plot of the data in the "go_enrich7" dataset
+show(dotplot(go_enrich7))
+
+# displays an upset plot of the data in the "go_enrich7" dataset
+show(upsetplot(go_enrich7))
+
+# displays a heat map plot of the data in the "go_enrich7" dataset, with fold change values determined by the "gene_list" dataset
+show(heatplot(go_enrich7, foldChange = gene_list))
+
+
+
 # Use the write.xlsx function to export the enrichGO results to an Excel file
 write.xlsx(go_enrich7, output_file)
 
@@ -88,6 +107,7 @@ write.xlsx(go_enrich7, output_file)
 
 #Test our function from the DEGpathwayAnalysis folder
 enrichGONE("DEGs_from_E-MTAB-2523.xlsx","universe2.xlsx","enrichGONE_results.xlsx")
+
 
 
 
